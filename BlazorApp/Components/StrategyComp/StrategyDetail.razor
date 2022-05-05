@@ -1,0 +1,31 @@
+﻿@page "/strategy-detail"
+@page "/strategy-detail/{StrategyId}"
+
+<MudAlert Severity="Severity.Normal" Class="mb-10"><b>Id: </b>@Strategy.Id</MudAlert>
+
+<MudButton 
+    OnClick="@(() => RecalcStats())"
+    Class="ma-1"
+    Variant="Variant.Filled" 
+    Color="Color.Primary">
+    Detail
+</MudButton>
+
+<MudTabs Elevation="2" Rounded="true" ApplyEffectsToContainer="true" PanelClass="pa-6">
+    <MudTabPanel Text="General">
+        <StrategyDetailInfo Strategy=@Strategy /> 
+    </MudTabPanel>
+    <MudTabPanel Text="Chart">
+        <StrategyDetailChart Strategy=@Strategy />
+    </MudTabPanel>
+    <MudTabPanel Text="MonthReturn">
+        <StrategyDetailMonthReturn Strategy=@Strategy />
+    </MudTabPanel>
+    <MudTabPanel Text="YearReturn">
+        <StrategyDetailYearReturn Strategy=@Strategy />
+    </MudTabPanel>
+    <MudTabPanel Text="Outcomes">
+        <StrategyDetailOutcomes Strategy=@Strategy />
+    </MudTabPanel>
+</MudTabs>
+

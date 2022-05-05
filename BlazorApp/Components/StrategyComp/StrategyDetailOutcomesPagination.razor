@@ -1,0 +1,47 @@
+﻿<div class="row justify-content-between">
+    <div class="col-12 col-md-6">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-right mb-2 mt-2">
+                @if (Pagination.HasPrevious)
+                {
+                    <li class="page-item">
+                        <a class="page-link" @onclick="PrevPage">Previous</a>
+                    </li>
+                }
+                @for (var i = 3; i > 0; i--)
+                {
+                    var number = Pagination.CurrentPage - i;
+                    @if (number >= 1) {
+                        <li class="page-item">
+                            <a class="page-link" @onclick="(e) => GoToPage(number)">@number</a>
+                        </li>
+                    }
+                }
+                <li class="page-item active"><a class="page-link">@Pagination.CurrentPage</a></li>
+                @for (var i = 1; i < 4; i++)
+                {
+                    var number = Pagination.CurrentPage + i;
+                    @if (number <= Pagination.TotalPages) {
+                        <li class="page-item">
+                            <a class="page-link" @onclick="(e) => GoToPage(number)">@number</a>
+                        </li>
+                    }
+                }
+                @if (Pagination.HasNext)
+                {
+                    <li class="page-item">
+                        <a class="page-link" @onclick="NextPage">Next</a>
+                        </li>
+                }
+            </ul>
+        </nav>
+    </div>
+    <div class="col-12 col-md-1">
+        <select class="form-select" @onchange="(e) => PageSizeChange(e)">
+            <option value="10">10</option>
+            <option value="50">50</option>
+            <option value="500">500</option>
+            <option value="1000">1000</option>
+        </select>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+﻿<div class="table-responsive">
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Strategies</th>
+                <th scope="col">Outcomes</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Count.Strategies</td>
+                <td>@Count.Outcomes</td>
+                <td>
+                    <button type="button" 
+                        class="btn btn-primary mb-1"
+                        @onclick="GetCounts">Update</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

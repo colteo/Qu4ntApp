@@ -1,0 +1,26 @@
+﻿<div class="row">
+    <div class="col-12 col-md-4">
+        <PlotlyChart 
+            Id="TradeId" 
+            Config="config" 
+            Layout="TradeLayout" 
+            Data="TradeData" 
+            @ref="TradeChart" />
+    </div>
+    <div class="col-12 col-md-4">
+        <PlotlyChart 
+            Id="LongId" 
+            Config="config" 
+            Layout="LongLayout" 
+            Data="LongData" 
+            @ref="LongChart" />
+    </div>
+    <div class="col-12 col-md-4">
+        <PlotlyChart 
+            Id="ShortId" 
+            Config="config" 
+            Layout="ShortLayout" 
+            Data="ShortData" 
+            @ref="ShortChart" />
+    </div>
+</div>

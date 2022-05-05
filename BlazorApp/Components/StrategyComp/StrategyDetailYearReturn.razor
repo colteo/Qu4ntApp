@@ -1,0 +1,39 @@
+﻿<div class="row">
+    <div class="col-12 col-md-12">
+        <h4>YearReturn</h4>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">@nameof(YearReturn.Year)</th>
+                        <th scope="col">@nameof(Counting.Total)</th>
+                        <th scope="col">@nameof(Counting.TakeProfit)</th>
+                        <th scope="col">@nameof(Counting.StopLoss)</th>
+                        <th scope="col">@nameof(YearReturn.InitialCash)</th>
+                        <th scope="col">@nameof(YearReturn.FinalCash)</th>
+                        <th scope="col">@nameof(YearReturn.FinalCashAVG)</th>
+                        <th scope="col">@nameof(YearReturn.WinRate)</th>
+                        <th scope="col">@nameof(YearReturn.PercentageReturn)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var item in Strategy.Stats.Yearly)
+                    {
+                        <tr>
+                            <td>@item.Year</td>
+                            <td>@item.Counting.Total</td>
+                            <td>@item.Counting.TakeProfit</td>
+                            <td>@item.Counting.StopLoss</td>
+                            <td>@item.InitialCash</td>
+                            <td>@item.FinalCash</td>
+                            <td>@item.FinalCashAVG</td>
+                            <td>@item.WinRate</td>
+                            <td>@item.PercentageReturn</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<hr />

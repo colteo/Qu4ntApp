@@ -1,0 +1,22 @@
+﻿<EditForm Model="@Form" OnValidSubmit="OnFormSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <div class="form-row row">
+        <div class="form-group col-md-4">
+            <MudTextField @bind-Value="Form.Id" Label="Id" Variant="Variant.Text" />
+        </div>
+        <div class="form-group col-md-4">
+            <MudSelect T="TradeType" Label="Instrument" MultiSelection="true" @bind-SelectedValues="Form.TypesOfTrade">
+                <MudSelectItem Value="@TradeType.Long" />
+                <MudSelectItem Value="@TradeType.Short" />
+            </MudSelect>
+        </div>
+        <div class="form-group col-md-4">
+            <MudSelect T="OrderType" Label="Instrument" MultiSelection="true" @bind-SelectedValues="Form.TypesOfOrder">
+                <MudSelectItem Value="@OrderType.take_profit" />
+                <MudSelectItem Value="@OrderType.stop_loss" />
+            </MudSelect>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary mb-2 mt-2">Submit</button>
+</EditForm>

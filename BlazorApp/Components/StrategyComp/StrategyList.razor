@@ -1,0 +1,56 @@
+﻿<StrategyListForm OnSubmit="SubmitHandler" Form="Form"/>
+@if (Strategies is not null)
+{
+    @if (Strategies.Count() > 0)
+    {
+        <hr />
+        <button type="submit" class="btn btn-danger float-right mb-2 mt-2" @onclick="Delete">Delete</button>
+    }
+}
+<MudTable 
+    Items="@Strategies"
+    MultiSelection="true"
+    @bind-SelectedItems="selectedItems"
+    Hover="true" 
+    Breakpoint="Breakpoint.Sm" 
+    LoadingProgressColor="Color.Info">
+        <HeaderContent>
+            <MudTh>Type</MudTh>
+            <MudTh>Name</MudTh>
+            <MudTh>Instrument</MudTh>
+            <MudTh>Granularity</MudTh>
+            <MudTh>Start</MudTh>
+            <MudTh>End</MudTh>
+            <MudTh>InitialCash</MudTh>
+            <MudTh>FinalCash</MudTh>
+            <MudTh>Leverage</MudTh>
+            <MudTh>Outcomes</MudTh>
+            <MudTh>Completed</MudTh>
+            <MudTh></MudTh>
+        </HeaderContent>
+        <RowTemplate>
+            <MudTd DataLabel="Type">@context.Type.ToString()</MudTd>
+            <MudTd DataLabel="Name">@context.Name</MudTd>
+            <MudTd DataLabel="Instrument">@context.Instrument</MudTd>
+            <MudTd DataLabel="Granularity">@context.Granularity</MudTd>
+            <MudTd DataLabel="Start">@context.Start</MudTd>
+            <MudTd DataLabel="End">@context.End</MudTd>
+            <MudTd DataLabel="InitialCash">@context.InitialCash</MudTd>
+            <MudTd DataLabel="FinalCash">@context.FinalCash</MudTd>
+            <MudTd DataLabel="Leverage">@context.Leverage</MudTd>
+            <MudTd DataLabel="Outcomes">@context.Outcomes.Count()</MudTd>
+            <MudTd DataLabel="Completed">@context.Completed</MudTd>
+            <MudTd>
+                @if (context.Completed)
+                {
+                    <MudButton 
+                        OnClick="@(() => ShowDetail(context))"
+                        Class="ma-1"
+                        Variant="Variant.Filled" 
+                        Color="Color.Primary">
+                        Detail
+                    </MudButton>
+                }
+            </MudTd>
+        </RowTemplate>
+    </MudTable>

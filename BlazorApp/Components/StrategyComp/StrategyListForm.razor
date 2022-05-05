@@ -1,0 +1,48 @@
+﻿<EditForm Model="@Form" OnValidSubmit="OnFormSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <div class="form-row row">
+        <div class="form-group col-md-4">
+            <MudTextField @bind-Value="Form.Type" Label="Type (Read Only)" ReadOnly="true" Variant="Variant.Text" />
+        </div>
+        <div class="form-group col-md-4">
+            <MudTextField @bind-Value="Form.Name" Label="Description" Variant="Variant.Text"></MudTextField>
+        </div>
+        <div class="form-group col-md-4">
+            <MudDatePicker @bind-Date="Form.CreatedOn" Label="CreatedOn"/>
+        </div>
+    </div>
+    <div class="form-row row">
+        <div class="form-group col-md-6">
+            <MudSelect T="string" Label="Instrument" MultiSelection="true" @bind-Value="value" @bind-SelectedValues="Form.Instruments">
+                @foreach (var item in Instruments)
+                {
+                    <MudSelectItem T="string" Value="@item">@item</MudSelectItem>
+                }
+            </MudSelect>
+        </div>
+        <div class="form-group col-md-6">
+            <MudSelect T="string" Label="Granularity" MultiSelection="true" @bind-Value="value" @bind-SelectedValues="Form.Granularities">
+                @foreach (var item in Granularities)
+                {
+                    <MudSelectItem T="string" Value="@item">@item</MudSelectItem>
+                }
+            </MudSelect>
+        </div>
+    </div>
+    <div class="form-row row">
+        <div class="form-group col-md-6">
+            <MudTextField @bind-Value="Form.Limit" Label="Limit" Variant="Variant.Text"></MudTextField>
+        </div>
+        <div class="form-group col-md-6">
+            <MudSelect @bind-Value="Form.OrderBy" Label="Select order by" Placeholder="Please Select" AdornmentColor="Color.Primary">
+                <MudSelectItem Value="@nameof(Strategy.CreatedOn)">CreatedOn</MudSelectItem>
+                <MudSelectItem Value="@nameof(Strategy.Stats.Trade)">Trade</MudSelectItem>
+                <MudSelectItem Value="@nameof(Strategy.Stats.WinRate)">Won</MudSelectItem>
+                <MudSelectItem Value="@nameof(Strategy.FinalCash)">Final Cash</MudSelectItem>
+            </MudSelect>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary mb-2 mt-2">Submit</button>
+    <button class="btn btn-primary mb-2 mt-2" @onclick="LoadValues">Update</button>
+</EditForm>

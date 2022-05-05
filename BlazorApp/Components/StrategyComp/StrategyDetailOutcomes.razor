@@ -1,0 +1,66 @@
+﻿<StrategyDetailOutcomesPagination Pagination="Pagination" Changed="ChangedHandler" />
+<StrategyDetailOutcomesForm OnSubmit="SubmitHandler" Form="Form" />
+<div class="row">
+    <div class="col-12 col-md-12">
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                      <th scope="col" colspan="17">Showing: @(GetOutcome().First().Id)-@(GetOutcome().Last().Id) | Total: @(Strategy.Outcomes.Count()) | Total with Filter @(GetOutcomeFiltered().Count())</th>
+                    </tr>
+                    <tr>
+                      <th scope="col" colspan="1"></th>
+                      <th scope="col" colspan="4">@nameof(Outcome.Trade)</th>
+                      <th scope="col" colspan="3">@nameof(Outcome.Trade) @nameof(Outcome.Trade.Candle)</th>
+                      <th scope="col" colspan="4">@nameof(Outcome.Order)</th>
+                      <th scope="col" colspan="3">@nameof(Outcome.Order.Candle)</th>
+                      <th scope="col" colspan="2"></th>
+                    </tr>
+                    <tr>
+                        <th scope="col">Nr</th>
+                        <th scope="col">@nameof(Outcome.Trade.Id)</th>
+                        <th scope="col">@nameof(Outcome.Trade.Price)</th>
+                        <th scope="col">@nameof(Outcome.Trade.Type)</th>
+                        <th scope="col">@nameof(Outcome.Trade.Datetime)</th>
+                        <th scope="col">@nameof(Outcome.Trade.Candle.Datetime)</th>
+                        <th scope="col">@nameof(Outcome.Trade.Candle.Ask)</th>
+                        <th scope="col">@nameof(Outcome.Trade.Candle.Bid)</th>
+                        <th scope="col">@nameof(Outcome.Order.Id)</th>
+                        <th scope="col">@nameof(Outcome.Order.ParentId)</th>
+                        <th scope="col">@nameof(Outcome.Order.Type)</th>
+                        <th scope="col">@nameof(Outcome.Order.Price)</th>
+                        <th scope="col">@nameof(Outcome.Order.Candle.Datetime)</th>
+                        <th scope="col">@nameof(Outcome.Order.Candle.Ask)</th>
+                        <th scope="col">@nameof(Outcome.Order.Candle.Bid)</th>
+                        <th scope="col">@nameof(Outcome.InitialCash)</th>
+                        <th scope="col">@nameof(Outcome.FinalCash)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in GetOutcome())
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.Trade.Id</td>
+                            <td>@item.Trade.Price</td>
+                            <td>@item.Trade.Type</td>
+                            <td>@item.Trade.Datetime</td>
+                            <td>@item.Trade.Candle.Datetime</td>
+                            <td>@item.Trade.Candle.Ask</td>
+                            <td>@item.Trade.Candle.Bid</td>
+                            <td>@item.Order.Id</td>
+                            <td>@item.Order.ParentId</td>
+                            <td>@item.Order.Type</td>
+                            <td>@item.Order.Price</td>
+                            <td>@item.Order.Candle.Datetime</td>
+                            <td>@item.Order.Candle.Ask</td>
+                            <td>@item.Order.Candle.Bid</td>
+                            <td>@item.InitialCash</td>
+                            <td>@item.FinalCash</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,187 @@
+﻿<div class="row">
+    <div class="col-12 col-md-12">
+        <h4>Info</h4>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">@nameof(Strategy.Type)</th>
+                        <th scope="col">@nameof(Strategy.Name)</th>
+                        <th scope="col">@nameof(Strategy.Instrument)</th>
+                        <th scope="col">@nameof(Strategy.Granularity)</th>
+                        <th scope="col">@nameof(Strategy.Start)</th>
+                        <th scope="col">@nameof(Strategy.End)</th>
+                        <th scope="col">@nameof(Strategy.InitialCash)</th>
+                        <th scope="col">@nameof(Strategy.FinalCash)</th>
+                        <th scope="col">@nameof(Strategy.Leverage)</th>
+                        <th scope="col">@nameof(Strategy.Outcomes)</th>
+                        <th scope="col">@nameof(Strategy.Completed)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>@Strategy.Type</td>
+                        <td>@Strategy.Name</td>
+                        <td>@Strategy.Instrument</td>
+                        <td>@Strategy.Granularity</td>
+                        <td>@Strategy.Start</td>
+                        <td>@Strategy.End</td>
+                        <td>@Strategy.InitialCash</td>
+                        <td>@Strategy.FinalCash</td>
+                        <td>@Strategy.Leverage</td>
+                        <td>@Strategy.Outcomes.Count()</td>
+                        <td>@Strategy.Completed</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 col-md-6">
+        <h4>Meta</h4>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">@nameof(Meta.Key)</th>
+                        <th scope="col">@nameof(Meta.Value)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Strategy.Meta)
+                    {
+                        <tr>
+                            <td>@item.Key</td>
+                            <td>@item.Value</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 col-md-6">
+        <h4>Stats</h4>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">@nameof(Strategy.Stats.WinRate)</th>
+                        <th scope="col">@nameof(Strategy.Stats.LostRate)</th>
+                        <th scope="col">@nameof(Strategy.Stats.PercentageReturn)</th>
+                        <th scope="col" colspan="2">@nameof(ConsecutiveStopLoss)</th>
+                        <th scope="col">@nameof(Strategy.Stats.MonthlyWinRate)</th>
+                        <th scope="col">@nameof(Strategy.Stats.YearlyWinRate)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>@Strategy.Stats.WinRate</td>
+                        <td>@Strategy.Stats.LostRate</td>
+                        <td>@Strategy.Stats.PercentageReturn</td>
+                        <td>@Strategy.Stats.MaxConsecutiveStopLoss.Count</td>
+                        <td>(index: @Strategy.Stats.MaxConsecutiveStopLoss.Indexs.First())</td>
+                        <td>@(Math.Round(Strategy.Stats.MonthlyWinRate, 2))</td>
+                        <td>@(Math.Round(Strategy.Stats.YearlyWinRate, 2))</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-12 col-md-6">
+        <h4>DrawDown</h4>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col" colspan="2">@nameof(DrawDown.HighCash)</th>
+                        <th scope="col" colspan="2">@nameof(DrawDown.MinCash)</th>
+                        <th scope="col" colspan="1">@nameof(DrawDown.Value)</th>
+                        <th scope="col" colspan="1">@nameof(DrawDown.Percentage)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>@Strategy.Stats.DrawDown.HighCash.Key</td>
+                        <td>@Strategy.Stats.DrawDown.HighCash.Value</td>
+                        <td>@Strategy.Stats.DrawDown.MinCash.Key</td>
+                        <td>@Strategy.Stats.DrawDown.MinCash.Value</td>
+                        <td>@Strategy.Stats.DrawDown.Value</td>
+                        <td>@Strategy.Stats.DrawDown.Percentage</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 col-md-4">
+        <h4>Trade</h4>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">@nameof(CountingTrade.Total)</th>
+                        <th scope="col">@nameof(CountingTrade.TakeProfit)</th>
+                        <th scope="col">@nameof(CountingTrade.StopLoss)</th>
+                        <th scope="col">@nameof(CountingTrade.Long)</th>
+                        <th scope="col">@nameof(CountingTrade.Short)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>@Strategy.Stats.Trade.Total</td>
+                        <td>@Strategy.Stats.Trade.TakeProfit</td>
+                        <td>@Strategy.Stats.Trade.StopLoss</td>
+                        <td>@Strategy.Stats.Trade.Long</td>
+                        <td>@Strategy.Stats.Trade.Short</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-12 col-md-4">
+        <h4>Long</h4>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">@nameof(CountingLongShort.Total)</th>
+                        <th scope="col">@nameof(CountingLongShort.TakeProfit)</th>
+                        <th scope="col">@nameof(CountingLongShort.StopLoss)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>@Strategy.Stats.Long.Total</td>
+                        <td>@Strategy.Stats.Long.TakeProfit</td>
+                        <td>@Strategy.Stats.Long.StopLoss</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-12 col-md-4">
+        <h4>Short</h4>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">@nameof(CountingLongShort.Total)</th>
+                        <th scope="col">@nameof(CountingLongShort.TakeProfit)</th>
+                        <th scope="col">@nameof(CountingLongShort.StopLoss)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>@Strategy.Stats.Short.Total</td>
+                        <td>@Strategy.Stats.Short.TakeProfit</td>
+                        <td>@Strategy.Stats.Short.StopLoss</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
