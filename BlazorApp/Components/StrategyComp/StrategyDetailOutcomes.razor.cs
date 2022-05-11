@@ -83,7 +83,7 @@ namespace BlazorApp.Components.StrategyComp
     public class OutcomeForm
     {
         public int? Id { get; set; }
-        public IEnumerable<TradeType> TypesOfTrade { get; set; } = Enumerable.Empty<TradeType>();
+        public IEnumerable<PositionType> TypesOfTrade { get; set; } = Enumerable.Empty<PositionType>();
         public IEnumerable<OrderType> TypesOfOrder { get; set; } = Enumerable.Empty<OrderType>();
     }
 }

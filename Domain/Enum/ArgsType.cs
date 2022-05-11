@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Domain.Enum
 {
-    public enum PositionType
+    public enum ArgsType
     {
-        None,
-        Long,
-        Short
+        String,
+        Int,
+        ListOfString
     }
 }

@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace Domain.Enum
 {
-    public enum PositionType
+    public enum DataFeedType
     {
-        None,
-        Long,
-        Short
+        by_count,
+        by_datetime,
     }
 }

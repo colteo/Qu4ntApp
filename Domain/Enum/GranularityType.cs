@@ -6,10 +6,17 @@ using System.Threading.Tasks;
 
 namespace Domain.Enum
 {
-    public enum PositionType
+    public enum GranularityType
     {
         None,
-        Long,
-        Short
+        D,
+        H1,
+        M30,
+        M15,
+        M5,
+        M1,
+        S30,
+        S15,
+        S5,
     }
 }

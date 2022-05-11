@@ -6,10 +6,13 @@ using System.Threading.Tasks;
 
 namespace Domain.Enum
 {
-    public enum PositionType
+    public enum InstrumentType
     {
-        None,
-        Long,
-        Short
+        EUR_USD,
+        EUR_CHF,
+        EUR_GBP,
+        EUR_AUD,
+        EUR_CAD,
+        EUR_NZD,
     }
 }

@@ -6,9 +6,9 @@
             <MudTextField @bind-Value="Form.Id" Label="Id" Variant="Variant.Text" />
         </div>
         <div class="form-group col-md-4">
-            <MudSelect T="TradeType" Label="Instrument" MultiSelection="true" @bind-SelectedValues="Form.TypesOfTrade">
-                <MudSelectItem Value="@TradeType.Long" />
-                <MudSelectItem Value="@TradeType.Short" />
+            <MudSelect T="PositionType" Label="Instrument" MultiSelection="true" @bind-SelectedValues="Form.TypesOfTrade">
+                <MudSelectItem Value="@PositionType.Long" />
+                <MudSelectItem Value="@PositionType.Short" />
             </MudSelect>
         </div>
         <div class="form-group col-md-4">

@@ -12,12 +12,6 @@ namespace RestAPI.V1.Controllers
 
         }
 
-        [HttpGet("check-url-is-on")]
-        public string CheckUrlIsOn()
-        {
-            return "OK";
-        }
-
         [HttpPost("add-backtest")]
         public string AddBacktest(BacktestDTO dto)
         {

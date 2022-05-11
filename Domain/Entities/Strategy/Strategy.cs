@@ -33,20 +33,20 @@ namespace Domain.Entities.Strategy
             Stats = new Statistics();
             Stats.Trade = new CountingTrade(
                 Outcomes.Count(),
-                Outcomes.FindAll(x => x.Trade.Type == TradeType.Long).Count(),
-                Outcomes.FindAll(x => x.Trade.Type == TradeType.Short).Count(),
+                Outcomes.FindAll(x => x.Trade.Type == PositionType.Long).Count(),
+                Outcomes.FindAll(x => x.Trade.Type == PositionType.Short).Count(),
                 Outcomes.FindAll(x => x.Order.Type == OrderType.take_profit).Count(),
                 Outcomes.FindAll(x => x.Order.Type == OrderType.stop_loss).Count()
                 );
             Stats.Long = new CountingLongShort(
-                Outcomes.FindAll(x => x.Trade.Type == TradeType.Long).Count(),
-                Outcomes.FindAll(x => x.Trade.Type == TradeType.Long && x.Order.Type == OrderType.take_profit).Count(),
-                Outcomes.FindAll(x => x.Trade.Type == TradeType.Long && x.Order.Type == OrderType.stop_loss).Count()
+                Outcomes.FindAll(x => x.Trade.Type == PositionType.Long).Count(),
+                Outcomes.FindAll(x => x.Trade.Type == PositionType.Long && x.Order.Type == OrderType.take_profit).Count(),
+                Outcomes.FindAll(x => x.Trade.Type == PositionType.Long && x.Order.Type == OrderType.stop_loss).Count()
                 );
             Stats.Short = new CountingLongShort(
-                Outcomes.FindAll(x => x.Trade.Type == TradeType.Short).Count(),
-                Outcomes.FindAll(x => x.Trade.Type == TradeType.Short && x.Order.Type == OrderType.take_profit).Count(),
-                Outcomes.FindAll(x => x.Trade.Type == TradeType.Short && x.Order.Type == OrderType.stop_loss).Count()
+                Outcomes.FindAll(x => x.Trade.Type == PositionType.Short).Count(),
+                Outcomes.FindAll(x => x.Trade.Type == PositionType.Short && x.Order.Type == OrderType.take_profit).Count(),
+                Outcomes.FindAll(x => x.Trade.Type == PositionType.Short && x.Order.Type == OrderType.stop_loss).Count()
                 );
             Stats.MaxConsecutiveStopLoss = FindMaxConsecutiveStopLoss();
             

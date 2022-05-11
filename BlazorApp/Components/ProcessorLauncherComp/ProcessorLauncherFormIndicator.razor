@@ -1,0 +1,33 @@
+﻿
+<div class="form-row row">
+    <div class="form-group col-md-4">
+        <MudTextField @bind-Value="Indicator.Name" Label="Indicator Name" Variant="Variant.Text" />
+    </div>
+</div>
+    <div class="form-row row">
+        <div class="form-group col-md-4">
+            <MudTextField @bind-Value="DictKey" Label="Key" Variant="Variant.Text" />
+        </div>
+        <div class="form-group col-md-4">
+            <MudTextField @bind-Value="DictValue" Label="Value" Variant="Variant.Text" />
+        </div>
+        <div class="form-group col-md-4">
+            <MudButton 
+                OnClick="@(() => AddIndicatorArgs())"
+                Class="ma-1"
+                Variant="Variant.Filled" 
+                Color="Color.Primary">
+                AddBrokerArgs
+            </MudButton>
+        </div>
+    </div>
+    <MudTable Items="@Indicator.Args" Hover="true" Context="indicatorArgs" Breakpoint="Breakpoint.Sm" LoadingProgressColor="Color.Info">
+        <HeaderContent>
+            <MudTh>Key</MudTh>
+            <MudTh>Value</MudTh>
+        </HeaderContent>
+        <RowTemplate>
+            <MudTd DataLabel="Key">@indicatorArgs.Key</MudTd>
+            <MudTd DataLabel="Key">@indicatorArgs.Value</MudTd>
+        </RowTemplate>
+    </MudTable>

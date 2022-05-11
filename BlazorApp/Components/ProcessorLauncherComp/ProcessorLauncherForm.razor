@@ -1,0 +1,125 @@
+﻿<EditForm Model="@Form" OnValidSubmit="Submit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <div class="form-row row">
+        <div class="form-group col-md-4">
+            <MudSelect T="ProcessorType" Label="Processor Type" MultiSelection="false" @bind-Value="Form.TypeOfProcessor" Variant="Variant.Outlined" >
+                @foreach (ProcessorType item in (ProcessorType[]) Enum.GetValues(typeof(ProcessorType)))
+                {
+                    <MudSelectItem Value="@item" />
+                }
+            </MudSelect>
+        </div>
+    </div>
+    <h4 class="mt-5">Broker</h4>
+    <div class="form-row row">
+        <div class="form-group col-md-4">
+            <MudTextField @bind-Value="Form.Broker.Name" Label="Name" Variant="Variant.Outlined" />
+        </div>
+    </div>
+    <div class="form-row row">
+        <div class="form-group col-md-4">
+            <MudTextField @bind-Value="DictKey" Label="Key" Variant="Variant.Outlined" />
+        </div>
+        <div class="form-group col-md-4">
+            <MudTextField @bind-Value="DictValue" Label="Value" Variant="Variant.Outlined" />
+        </div>
+        <div class="form-group col-md-4">
+            <MudButton 
+                OnClick="@(() => AddBrokerArgs())"
+                Class="ma-1"
+                Variant="Variant.Filled" 
+                Color="Color.Primary">
+                Add Broker Args
+            </MudButton>
+        </div>
+    </div>
+    <MudTable Items="@Form.Broker.Args" Hover="true" Context="brokerArgs" Breakpoint="Breakpoint.Sm" LoadingProgressColor="Color.Info" Class="mt-1">
+        <HeaderContent>
+            <MudTh>Key</MudTh>
+            <MudTh>Value</MudTh>
+        </HeaderContent>
+        <RowTemplate>
+            <MudTd DataLabel="Key">@brokerArgs.Key</MudTd>
+            <MudTd DataLabel="Key">@brokerArgs.Value</MudTd>
+        </RowTemplate>
+    </MudTable>
+    <h4 class="mt-5">Data Feed</h4>
+    <div class="form-row row">
+        <div class="form-group col-md-4">
+            <MudSelect T="InstrumentType" Label="Instrument Type" MultiSelection="false" @bind-Value="Form.Feed.Instrument" Variant="Variant.Outlined">
+                @foreach (InstrumentType item in (InstrumentType[]) Enum.GetValues(typeof(InstrumentType)))
+                {
+                    <MudSelectItem Value="@item" />
+                }
+            </MudSelect>
+        </div>
+        <div class="form-group col-md-4">
+            <MudSelect T="GranularityType" Label="Granularity Type" MultiSelection="false" @bind-Value="Form.Feed.Granularity" Variant="Variant.Outlined">
+                @foreach (GranularityType item in (GranularityType[]) Enum.GetValues(typeof(GranularityType)))
+                {
+                    <MudSelectItem Value="@item" />
+                }
+            </MudSelect>
+        </div>
+    </div>
+    @if (Form.TypeOfProcessor == ProcessorType.backtest)
+    {
+        <div class="form-row row">
+            <div class="form-group col-md-4">
+                <MudDatePicker @bind-Date="Form.Feed.StartDate" Label="StartDate"/>
+            </div>
+            <div class="form-group col-md-4">
+                <MudDatePicker @bind-Date="Form.Feed.EndDate" Label="EndDate"/>
+            </div>
+            <div class="form-group col-md-4">
+                <MudSelect T="GranularityType" Label="StreamGranularity Type" MultiSelection="false" @bind-Value="Form.Feed.StreamGranularity" Variant="Variant.Outlined">
+                    @foreach (GranularityType item in (GranularityType[]) Enum.GetValues(typeof(GranularityType)))
+                    {
+                        <MudSelectItem Value="@item" />
+                    }
+                </MudSelect>
+            </div>
+        </div>
+    }
+    else if (Form.TypeOfProcessor == ProcessorType.live)
+    {
+        <div class="form-row row">
+            <div class="form-group col-md-4">
+                <MudTextField @bind-Value="Form.Feed.Count" Label="Count" Variant="Variant.Outlined" />
+            </div>
+        </div>
+    }
+    
+    <h4 class="mt-5">Strategy</h4>
+    <div class="form-row row">
+        <div class="form-group col-md-4">
+            <MudTextField @bind-Value="Form.Strategy.Name" Label="Strategy Name" Variant="Variant.Outlined" />
+        </div>
+        <div class="form-group col-md-3">
+            <MudTextField @bind-Value="Form.Strategy.StopLoss" Label="Stop Loss" Variant="Variant.Outlined" />
+        </div>
+        <div class="form-group col-md-3">
+            <MudTextField @bind-Value="Form.Strategy.TakeProfit" Label="Take Profit" Variant="Variant.Outlined" />
+        </div>
+        <div class="form-group col-md-2">
+            <MudButton 
+                OnClick="@(() => AddIndicator())"
+                Class="ma-1"
+                Variant="Variant.Filled" 
+                Color="Color.Primary">
+                Add Indicator
+            </MudButton>
+        </div>
+    </div>
+    <h4 class="mt-5">Indicator</h4>
+    <MudTabs Elevation="2" Rounded="true" ApplyEffectsToContainer="true" PanelClass="pa-6">
+        @foreach (var indicator in Form.Strategy.Indicators)
+        {
+            <MudTabPanel Text="@indicator.Name">
+                <ProcessorLauncherFormIndicator Indicator="indicator" />
+            </MudTabPanel>
+        }
+    </MudTabs>
+    <button type="submit" class="btn btn-primary mb-2 mt-2">Submit</button>
+</EditForm>

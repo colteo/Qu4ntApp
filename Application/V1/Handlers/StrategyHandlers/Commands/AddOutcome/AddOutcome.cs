@@ -37,7 +37,7 @@ namespace Application.V1.Handlers.StrategyHandlers.Commands.AddOutcome
                 Id = await _repository.CountOutcomes(filter) + 1,
                 Trade = new Trade(request.Dto.TradeId, 
                     request.Dto.TradePrice,
-                    (TradeType)Enum.Parse(typeof(TradeType), request.Dto.TradeType, true),
+                    (PositionType)Enum.Parse(typeof(PositionType), request.Dto.TradeType, true),
                     request.Dto.TradeDatetime,
                     new Candle(request.Dto.TradeStreamDatetime, request.Dto.TradeStreamAsk, request.Dto.TradeStreamBid)),
                 Order = new Order(request.Dto.OrderId,

@@ -11,10 +11,10 @@ namespace Domain.Entities.Strategy
     {
         public int Id { get; set; }
         public float Price { get; set; }
-        public TradeType Type { get; set; }
+        public PositionType Type { get; set; }
         public DateTime Datetime { get; set; }
         public Candle Candle { get; set; }
-        public Trade(int id, float price, TradeType type, DateTime dateTime, Candle candle)
+        public Trade(int id, float price, PositionType type, DateTime dateTime, Candle candle)
         {
             Id = id;
             Price = price;

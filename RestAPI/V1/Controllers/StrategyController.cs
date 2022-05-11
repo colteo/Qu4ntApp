@@ -16,6 +16,12 @@ namespace RestAPI.V1.Controllers
 
         }
 
+        [HttpGet("check-url-is-on")]
+        public string CheckUrlIsOn()
+        {
+            return "OK";
+        }
+
         [HttpPost("add-outcome")]
         public async void AddOutcome(AddOutcomeDTO dto)
             => await WSResponse(new AddOutcomeRequest() { Dto = dto });

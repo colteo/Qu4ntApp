@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Domain.Enum
 {
-    public enum PositionType
+    public enum ProcessorType
     {
         None,
-        Long,
-        Short
+        [Description("backtest")]
+        backtest,
+        live
     }
 }
