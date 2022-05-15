@@ -20,4 +20,9 @@
     <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="V1\Handlers\ProcessorLauncherHandlers\Commands\" />
+    <Folder Include="V1\Handlers\ProcessorLauncherHandlers\Queries\" />
+  </ItemGroup>
+
 </Project>

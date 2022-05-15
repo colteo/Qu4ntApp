@@ -1,5 +1,8 @@
-﻿using Domain.Entities.ProcessorLauncher;
+﻿using Application.V1.Handlers.ProcessorLauncherHandlers.APIRequest;
+using Domain.Entities.ProcessorLauncher;
 using Domain.Enum;
+using MediatR;
+using Microsoft.AspNetCore.Components;
 using Newtonsoft.Json;
 using System.Diagnostics;
 
@@ -7,16 +10,17 @@ namespace BlazorApp.Components.ProcessorLauncherComp
 {
     public partial class ProcessorLauncherForm
     {
-        public ProcessorFormModel Form { get; set; }
+        [Inject] public IMediator _mediator { get; set; }
+        public Processor Form { get; set; }
         protected override async void OnInitialized()
         {
-            Form = new ProcessorFormModel();
+            Form = new Processor();
+            Form.InitExampleValues();
             base.OnInitialized();
         }
-        private void Submit()
+        private async void Submit()
         {
-            Debug.WriteLine("sei nel submit handler");
-            Debug.WriteLine(JsonConvert.SerializeObject(Form));
+            await _mediator.Send(new ProcessorLauncherRequest() { Item = Form });
         }
         private async void AddIndicator()
         {
@@ -25,8 +29,6 @@ namespace BlazorApp.Components.ProcessorLauncherComp
                 Name = "Add Indicator"
             });
         }
-
-
         private string DictKey = string.Empty;
         private string DictValue = string.Empty;
         private void AddBrokerArgs()
@@ -35,42 +37,6 @@ namespace BlazorApp.Components.ProcessorLauncherComp
             DictKey = string.Empty;
             DictValue = string.Empty;
             StateHasChanged();
-        }
-    }
-    public class ProcessorFormModel
-    {
-        private ProcessorType typeOfProcessor;
-        public ProcessorType TypeOfProcessor
-        {
-            get { return typeOfProcessor; }
-            set
-            {
-                typeOfProcessor = value;
-                CheckProcessor(value);
-            }
-        }
-        public Strategy Strategy { get; set; }
-        public DataFeed Feed { get; set; }
-        public Broker Broker { get; set; }
-        public ProcessorFormModel()
-        {
-            Strategy = new Strategy();
-            Feed = new DataFeed();
-            Broker = new Broker();
-        }
-
-        private void CheckProcessor(ProcessorType value)
-        {
-            if (value == ProcessorType.backtest)
-            {
-                Feed.Count = int.MinValue;
-            }
-            else if (value == ProcessorType.live)
-            {
-                Feed.StartDate = DateTime.MinValue;
-                Feed.EndDate = DateTime.MinValue;
-                Feed.StreamGranularity = GranularityType.None;
-            }
         }
     }
 }

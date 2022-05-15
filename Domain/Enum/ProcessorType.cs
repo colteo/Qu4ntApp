@@ -10,7 +10,6 @@ namespace Domain.Enum
     public enum ProcessorType
     {
         None,
-        [Description("backtest")]
         backtest,
         live
     }
