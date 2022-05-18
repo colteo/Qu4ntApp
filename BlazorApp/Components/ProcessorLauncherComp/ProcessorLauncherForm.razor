@@ -1,4 +1,19 @@
-﻿<EditForm Model="@Form" OnValidSubmit="Submit">
+﻿<MudButton 
+    OnClick="@(() => InitBackTestExampleValues())"
+    Class="ma-1"
+    Variant="Variant.Filled" 
+    Color="Color.Primary">
+    Init Backtest Values
+</MudButton>
+<MudButton 
+    OnClick="@(() => InitLiveExampleValues())"
+    Class="ma-1"
+    Variant="Variant.Filled" 
+    Color="Color.Primary">
+    Init Live Values
+</MudButton>
+
+<EditForm Model="@Form" OnValidSubmit="Submit">
     <DataAnnotationsValidator />
     <ValidationSummary />
     <div class="form-row row">
@@ -38,10 +53,20 @@
         <HeaderContent>
             <MudTh>Key</MudTh>
             <MudTh>Value</MudTh>
+            <MudTh></MudTh>
         </HeaderContent>
         <RowTemplate>
             <MudTd DataLabel="Key">@brokerArgs.Key</MudTd>
-            <MudTd DataLabel="Key">@brokerArgs.Value</MudTd>
+            <MudTd DataLabel="Value">@brokerArgs.Value</MudTd>
+            <MudTd>
+                <MudButton 
+                    OnClick="@(() => RemoveBrokerArgs(@brokerArgs.Key))"
+                    Class="ma-1"
+                    Variant="Variant.Filled" 
+                    Color="Color.Primary">
+                    Remove
+                </MudButton>
+            </MudTd>
         </RowTemplate>
     </MudTable>
     <h4 class="mt-5">Data Feed</h4>

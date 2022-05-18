@@ -25,9 +25,19 @@
         <HeaderContent>
             <MudTh>Key</MudTh>
             <MudTh>Value</MudTh>
+            <MudTh></MudTh>
         </HeaderContent>
         <RowTemplate>
             <MudTd DataLabel="Key">@indicatorArgs.Key</MudTd>
-            <MudTd DataLabel="Key">@indicatorArgs.Value</MudTd>
+            <MudTd DataLabel="Value">@indicatorArgs.Value</MudTd>
+            <MudTd>
+                <MudButton 
+                    OnClick="@(() => RemoveIndicatorArgs(@indicatorArgs.Key))"
+                    Class="ma-1"
+                    Variant="Variant.Filled" 
+                    Color="Color.Primary">
+                    Remove
+                </MudButton>
+            </MudTd>
         </RowTemplate>
     </MudTable>
