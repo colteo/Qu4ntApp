@@ -82,7 +82,9 @@
                         <td>@Strategy.Stats.LostRate</td>
                         <td>@Strategy.Stats.PercentageReturn</td>
                         <td>@Strategy.Stats.MaxConsecutiveStopLoss.Count</td>
-                        <td>(index: @Strategy.Stats.MaxConsecutiveStopLoss.Indexs.First())</td>
+                        @*TODO: fix @Strategy.Stats.MaxConsecutiveStopLoss.Indexs vuoto*@
+                        @*<td>(index: @Strategy.Stats.MaxConsecutiveStopLoss.Indexs.First())</td>*@
+                        <td>need_bug_fix</td>
                         <td>@(Math.Round(Strategy.Stats.MonthlyWinRate, 2))</td>
                         <td>@(Math.Round(Strategy.Stats.YearlyWinRate, 2))</td>
                     </tr>
