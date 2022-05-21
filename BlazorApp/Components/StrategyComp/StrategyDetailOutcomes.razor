@@ -11,9 +11,9 @@
                     <tr>
                       <th scope="col" colspan="1"></th>
                       <th scope="col" colspan="4">@nameof(Outcome.Trade)</th>
-                      <th scope="col" colspan="3">@nameof(Outcome.Trade) @nameof(Outcome.Trade.Candle)</th>
+                      <th scope="col" colspan="4">@nameof(Outcome.Trade) @nameof(Outcome.Trade.Candle)</th>
                       <th scope="col" colspan="4">@nameof(Outcome.Order)</th>
-                      <th scope="col" colspan="3">@nameof(Outcome.Order.Candle)</th>
+                      <th scope="col" colspan="4">@nameof(Outcome.Order.Candle)</th>
                       <th scope="col" colspan="2"></th>
                     </tr>
                     <tr>
@@ -25,6 +25,7 @@
                         <th scope="col">@nameof(Outcome.Trade.Candle.Datetime)</th>
                         <th scope="col">@nameof(Outcome.Trade.Candle.Ask)</th>
                         <th scope="col">@nameof(Outcome.Trade.Candle.Bid)</th>
+                        <th scope="col">MidPrice</th>
                         <th scope="col">@nameof(Outcome.Order.Id)</th>
                         <th scope="col">@nameof(Outcome.Order.ParentId)</th>
                         <th scope="col">@nameof(Outcome.Order.Type)</th>
@@ -32,6 +33,7 @@
                         <th scope="col">@nameof(Outcome.Order.Candle.Datetime)</th>
                         <th scope="col">@nameof(Outcome.Order.Candle.Ask)</th>
                         <th scope="col">@nameof(Outcome.Order.Candle.Bid)</th>
+                        <th scope="col">MidPrice</th>
                         <th scope="col">@nameof(Outcome.InitialCash)</th>
                         <th scope="col">@nameof(Outcome.FinalCash)</th>
                     </tr>
@@ -48,6 +50,7 @@
                             <td>@item.Trade.Candle.Datetime</td>
                             <td>@item.Trade.Candle.Ask</td>
                             <td>@item.Trade.Candle.Bid</td>
+                            <td>@((item.Trade.Candle.Bid+item.Trade.Candle.Ask)/2)</td>
                             <td>@item.Order.Id</td>
                             <td>@item.Order.ParentId</td>
                             <td>@item.Order.Type</td>
@@ -55,6 +58,7 @@
                             <td>@item.Order.Candle.Datetime</td>
                             <td>@item.Order.Candle.Ask</td>
                             <td>@item.Order.Candle.Bid</td>
+                            <td>@((item.Order.Candle.Bid+item.Order.Candle.Ask)/2)</td>
                             <td>@item.InitialCash</td>
                             <td>@item.FinalCash</td>
                         </tr>
