@@ -33,6 +33,7 @@ namespace Application.V1.Handlers.StrategyHandlers.Commands.Remove
             foreach (Strategy strategy in request.Strategies)
             {
                 filter = Builders<Strategy>.Filter.Eq(nameof(Strategy.Id), strategy.Id);
+                _repository.Remove(filter);
             }
             _repository.Remove(filter);
             return new Empty();

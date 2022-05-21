@@ -15,10 +15,21 @@ namespace BlazorApp.Components.ProcessorLauncherComp
         [Inject] public IDialogService DialogService { get; set; }
         [Inject] public IMediator _mediator { get; set; }
         public Processor Form { get; set; }
+
         protected override async void OnInitialized()
         {
-            Form = new Processor();
+            InitEmptyValues();
             base.OnInitialized();
+        }
+        private void InitEmptyValues()
+        {
+            Form = new Processor();
+            TypeOfStopLossTakeProfit = StopLossTakeProfitType.None;
+            RatioStopLoss = 0;
+            RatioTakeProfit = 0;
+            RatioStartStopLoss = 0;
+            RatioLength = 0;
+            RatioIncrease = 0;
         }
         private void InitBackTestExampleValues()
         {
@@ -32,8 +43,13 @@ namespace BlazorApp.Components.ProcessorLauncherComp
         }
         private async void Submit()
         {
-            await _mediator.Send(new ProcessorLauncherRequest() { Item = Form });
+            CheckTypeOfStopLossTakeProfit();
         }
+        private async void Launch(Processor form)
+        {
+            await _mediator.Send(new ProcessorLauncherRequest() { Item = form });
+        }
+
         private async void AddIndicator()
         {
             Form.Strategy.Indicators.Add(new Indicator()
@@ -68,5 +84,38 @@ namespace BlazorApp.Components.ProcessorLauncherComp
             Form.Broker.Args.RemoveAll(x => x.Key == key);
             StateHasChanged();
         }
+
+
+        #region StopLossTakeProfitType
+        private StopLossTakeProfitType TypeOfStopLossTakeProfit;
+        public decimal RatioStopLoss { get; set; }
+        public decimal RatioTakeProfit { get; set; }
+        public int RatioStartStopLoss { get; set; }
+        public int RatioLength { get; set; }
+        public int RatioIncrease { get; set; }
+        private void CheckTypeOfStopLossTakeProfit()
+        {
+            switch (TypeOfStopLossTakeProfit)
+            {
+                case StopLossTakeProfitType.Fixed:
+                    Launch(Form);
+                    break;
+                case StopLossTakeProfitType.Range:
+                    break;
+                case StopLossTakeProfitType.Ratio:
+                    for (int i = 0; i <= RatioLength; i++)
+                    {
+                        Form.Strategy.StopLoss = RatioStartStopLoss * RatioStopLoss;
+                        Form.Strategy.TakeProfit = RatioStartStopLoss * RatioTakeProfit;
+                        RatioStartStopLoss += RatioIncrease;
+                        Launch(Form);
+                    }
+                    break;
+                default:
+                    break;
+            }
+            InitEmptyValues();
+        }
+        #endregion
     }
 }

@@ -48,7 +48,8 @@ namespace Application.V1.Handlers.ProcessorLauncherHandlers.APIRequest
             using (var client = new HttpClient())
             {
                 // This would be the like http://www.uber.com
-                client.BaseAddress = new Uri("http://quant-processor-api:8081/");
+                client.BaseAddress = new Uri("http://qu4nt-processor-api:8082/");
+                // client.BaseAddress = new Uri("http://127.0.0.1:8082");
 
                 // serialize your json using newtonsoft json serializer then add it to the StringContent
                 var content = new StringContent(JsonConvert.SerializeObject(dto), Encoding.UTF8, "application/json");

@@ -10,8 +10,8 @@ namespace Domain.Entities.ProcessorLauncher
     {
         public string Name { get; set; }
         public List<Indicator> Indicators { get; set; }
-        public int StopLoss { get; set; }
-        public int TakeProfit { get; set; }
+        public decimal StopLoss { get; set; }
+        public decimal TakeProfit { get; set; }
         public Strategy()
         {
             Indicators = new List<Indicator>();

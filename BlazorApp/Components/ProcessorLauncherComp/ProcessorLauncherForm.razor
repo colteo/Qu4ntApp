@@ -118,15 +118,53 @@
     
     <h4 class="mt-5">Strategy</h4>
     <div class="form-row row">
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-6">
             <MudTextField @bind-Value="Form.Strategy.Name" Label="Strategy Name" Variant="Variant.Outlined" />
         </div>
-        <div class="form-group col-md-3">
-            <MudTextField @bind-Value="Form.Strategy.StopLoss" Label="Stop Loss" Variant="Variant.Outlined" />
+        <div class="form-group col-md-6">
+            <MudSelect T="StopLossTakeProfitType" Label="StreamGranularity Type" MultiSelection="false" @bind-Value="TypeOfStopLossTakeProfit" Variant="Variant.Outlined">
+                @foreach (StopLossTakeProfitType item in (StopLossTakeProfitType[]) Enum.GetValues(typeof(StopLossTakeProfitType)))
+                {
+                    <MudSelectItem Value="@item" />
+                }
+            </MudSelect>
         </div>
-        <div class="form-group col-md-3">
-            <MudTextField @bind-Value="Form.Strategy.TakeProfit" Label="Take Profit" Variant="Variant.Outlined" />
-        </div>
+    </div>
+    <div class="form-row row">
+        @if (TypeOfStopLossTakeProfit == StopLossTakeProfitType.Fixed)
+        {
+            <div class="form-group col-md-6">
+                <MudTextField @bind-Value="Form.Strategy.StopLoss" Label="Stop Loss" Variant="Variant.Outlined" />
+            </div>
+            <div class="form-group col-md-6">
+                <MudTextField @bind-Value="Form.Strategy.TakeProfit" Label="Take Profit" Variant="Variant.Outlined" />
+            </div>
+        } 
+        else if(TypeOfStopLossTakeProfit == StopLossTakeProfitType.Range)
+        {
+            
+        }
+        else if(TypeOfStopLossTakeProfit == StopLossTakeProfitType.Ratio)
+        {
+            <div class="form-group col-md-2">
+                <MudTextField @bind-Value="RatioStopLoss" Label="Ratio Stop Loss" Variant="Variant.Outlined" />
+            </div>
+            <div class="form-group col-md-2">
+                <MudTextField @bind-Value="RatioTakeProfit" Label="Ratio Take Profit" Variant="Variant.Outlined" />
+            </div>
+            <div class="form-group col-md-2">
+                <MudTextField @bind-Value="RatioStartStopLoss" Label="Start Stop Loss" Variant="Variant.Outlined" />
+            </div>
+            <div class="form-group col-md-2">
+                <MudTextField @bind-Value="RatioLength" Label="Ratio Length" Variant="Variant.Outlined" />
+            </div>
+            <div class="form-group col-md-2">
+                <MudTextField @bind-Value="RatioIncrease" Label="Ratio Increase" Variant="Variant.Outlined" />
+            </div>
+        }
+    </div>
+    <h4 class="mt-5">Indicator</h4>
+    <div class="form-row row">
         <div class="form-group col-md-2">
             <MudButton 
                 OnClick="@(() => AddIndicator())"
@@ -137,7 +175,6 @@
             </MudButton>
         </div>
     </div>
-    <h4 class="mt-5">Indicator</h4>
     <MudTabs Elevation="2" Rounded="true" ApplyEffectsToContainer="true" PanelClass="pa-6">
         @foreach (var indicator in Form.Strategy.Indicators)
         {
